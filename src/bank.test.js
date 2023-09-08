@@ -1,31 +1,40 @@
 const { BankAccount } = require('./bank');
 
 describe('Bank functions', () => {
-  const aykhanBankAcc = new BankAccount('Aykhan', 1200);
+  let myAccount 
 
-  test("Transactions on Aykhan's bank account", () => {
-    expect(aykhanBankAcc.getBalance()).toBe('Aykhan: 1200');
-    aykhanBankAcc.deposit(300);
-    expect(aykhanBankAcc.getBalance()).toBe('Aykhan: 1500');
-    aykhanBankAcc.withdraw(900);
-    expect(aykhanBankAcc.getBalance()).toBe('Aykhan: 600');
-  });
+  beforeEach(() => {
+    myAccount = new BankAccount("Ayxan", 1200)
+  })
 
-  const marshallBankAcc = new BankAccount('Marshall', 6500);
-
-  test("Transactions on Marshall's bank account", () => {
-    expect(marshallBankAcc.getBalance()).toBe('Marshall: 6500');
-    marshallBankAcc.deposit(3400);
-    expect(marshallBankAcc.getBalance()).toBe('Marshall: 9900');
-    marshallBankAcc.withdraw(1200);
-    expect(marshallBankAcc.getBalance()).toBe('Marshall: 8700');
-  });
-
-
-  const tupacBankAcc = new BankAccount('Tupac', 13000) 
+  test("Deposit functions on Ayxan's bank account", () => {
+    expect(myAccount.getBalance()).toBe(1200);
+    myAccount.deposit(300);
+    expect(myAccount.getBalance()).toBe(1500)
   
-  test("Transaction on Tupac's bank account", () => {
-    expect(tupacBankAcc.getBalance()).toBe("Tupac: 13000")
-    expect(() => tupacBankAcc.withdraw(14000)).toThrow('The amount is bigger than your balance')    
+  });
+
+  test("Withdraw function on Ayxan's bank account", () => {
+    expect(myAccount.getBalance()).toBe(1200)
+    myAccount.withdraw(900);
+    expect(myAccount.getBalance()).toBe (300);
+  })
+
+  test("It must throw an error if deposit value is wrong", () => {
+    expect(() => myAccount.deposit()).toThrow()
+    expect(() => myAccount.deposit(-100)).toThrow()
+    expect(() => myAccount.deposit('120')).toThrow("")
+    expect(() => myAccount.deposit(null)).toThrow("")
+    expect(() => myAccount.deposit(undefined)).toThrow("")
+})
+
+
+  test("It must throw an error if withdraw value is wrong", () => {
+      expect(() => myAccount.withdraw(1300)).toThrow()
+      expect(() => myAccount.withdraw(-100)).toThrow()
+      expect(() => myAccount.withdraw()).toThrow()
+      expect(() => myAccount.withdraw('120')).toThrow("")
+      expect(() => myAccount.withdraw(null)).toThrow("")
+      expect(() => myAccount.withdraw(undefined)).toThrow("")
   })
 });

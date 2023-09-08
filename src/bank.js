@@ -4,20 +4,36 @@ function BankAccount(ownerName, initialBalance) {
   }
   
   BankAccount.prototype.deposit = function(amount) {
+    if( typeof amount !== "number"){
+      throw new Error("Amount must be a number");
+    }
+
+    if(amount < 0){
+      throw new Error ("Amount cant be less than zero")
+    }
+
     this.balance += amount;
   };
-  
-  BankAccount.prototype.withdraw = function(amount) {
-    if (this.balance < amount) {
-      throw new Error('The amount is bigger than your balance');
+
+  BankAccount.prototype.withdraw = function (amount){
+    if(amount > this.balance){
+        throw new Error ('The amount is bigger than your balance')
     }
-  
-    this.balance -= amount;
-  };
-  
-  BankAccount.prototype.getBalance = function() {
-    return `${this.ownerName}: ${this.balance}`;
-  };
-  
-  module.exports = { BankAccount };
-  
+
+   if(typeof amount !== "number"){
+      throw new Error("Amount must be a number")
+   }
+
+   if(amount < 0){
+    throw new Error('You cant withdraw negative amounts');
+   }
+
+   return this.balance -= amount
+  }
+
+  BankAccount.prototype.getBalance = function (balance){
+    return this.balance 
+}
+
+module.exports = { BankAccount }
+
