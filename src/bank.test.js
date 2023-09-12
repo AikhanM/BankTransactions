@@ -33,33 +33,31 @@ describe("Bank functions", () => {
   });
 
   describe("Withdraw functions on bank account", () => {
-  test("Withdraw function on bank account", () => {
-    expect(myAccount.getBalance()).toBe(1200);
-    myAccount.withdraw(900);
-    expect(myAccount.getBalance()).toBe(300);
-  });
+    test("Withdraw function on bank account", () => {
+      expect(myAccount.getBalance()).toBe(1200);
+      myAccount.withdraw(900);
+      expect(myAccount.getBalance()).toBe(300);
+    });
 
-  test("it must throw an error if withdraw value is not number", () => {
-    expect(() => myAccount.withdraw('1100').toThrow())
-  })
+    test("it must throw an error if withdraw value is not number", () => {
+      expect(() => myAccount.withdraw("1100").toThrow());
+    });
 
-  test("it must throw an error if withdraw value is bigger than amount", () => {
-    expect(() => myAccount.withdraw(1300).toThrow());
-  });
+    test("it must throw an error if withdraw value is bigger than amount", () => {
+      expect(() => myAccount.withdraw(1300).toThrow());
+    });
 
-  test("it must throw an error if withdraw value is negative", () => {
-    expect(() => myAccount.withdraw(-40).toThrow());
-  });
+    test("it must throw an error if withdraw value is negative", () => {
+      expect(() => myAccount.withdraw(-40).toThrow());
+    });
 
-  test("it must throw an error if withraw value is empty", () => {
-    expect(() => myAccount.withdraw()).toThrow();
-  });
+    test("it must throw an error if withraw value is empty", () => {
+      expect(() => myAccount.withdraw()).toThrow();
+    });
 
-  test("it must throw an error if withdraw value is falsy", () => {
-    expect(() => myAccount.withdraw(null)).toThrow("");
-    expect(() => myAccount.withdraw(undefined)).toThrow("");
-  });
+    test("it must throw an error if withdraw value is falsy", () => {
+      expect(() => myAccount.withdraw(null)).toThrow("");
+      expect(() => myAccount.withdraw(undefined)).toThrow("");
+    });
   });
 });
-
-
